@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		33ED6F222EB093570023190D /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 33ED6F212EB093570023190D /* SnapKit */; };
+		33ED6F252EB093AE0023190D /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 33ED6F242EB093AE0023190D /* Then */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		33ED6E992EB088070023190D /* sopt-37th-Assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sopt-37th-Assignment.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +41,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33ED6F222EB093570023190D /* SnapKit in Frameworks */,
+				33ED6F252EB093AE0023190D /* Then in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +85,8 @@
 			);
 			name = "sopt-37th-Assignment";
 			packageProductDependencies = (
+				33ED6F212EB093570023190D /* SnapKit */,
+				33ED6F242EB093AE0023190D /* Then */,
 			);
 			productName = "sopt-37th-Assignment";
 			productReference = 33ED6E992EB088070023190D /* sopt-37th-Assignment.app */;
@@ -107,6 +116,10 @@
 			);
 			mainGroup = 33ED6E902EB088070023190D;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				33ED6F202EB093570023190D /* XCRemoteSwiftPackageReference "SnapKit" */,
+				33ED6F232EB093AE0023190D /* XCRemoteSwiftPackageReference "Then" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 33ED6E9A2EB088070023190D /* Products */;
 			projectDirPath = "";
@@ -331,6 +344,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		33ED6F202EB093570023190D /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		33ED6F232EB093AE0023190D /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		33ED6F212EB093570023190D /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 33ED6F202EB093570023190D /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		33ED6F242EB093AE0023190D /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 33ED6F232EB093AE0023190D /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 33ED6E912EB088070023190D /* Project object */;
 }
