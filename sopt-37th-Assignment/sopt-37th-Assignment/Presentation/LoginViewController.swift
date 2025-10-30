@@ -12,10 +12,11 @@ import SnapKit
 
 final class LoginViewController: BaseUIViewController {
     private let navigationBar = BaeminNavigationBar(title: "이메일 또는 아이디로 계속")
-    private let idTextField = BaeminIdTextField()
-    private let passwordTextField = BaeminPasswordTextField()
-    private let loginButton = BaeminButton().then {
+    private lazy var idTextField = BaeminIdTextField()
+    private lazy var passwordTextField = BaeminPasswordTextField()
+    private lazy var loginButton = BaeminButton().then {
         $0.text = "로그인"
+        $0.isDisabled = true
     }
     private let findAccountButton = AccountButton()
     
@@ -49,5 +50,23 @@ final class LoginViewController: BaseUIViewController {
             $0.top.equalTo(loginButton.snp.bottom).offset(32)
             $0.centerX.equalToSuperview()
         }
+    }
+    
+    override func addTarget() {
+        idTextField.textField.addTarget(self, action: #selector(readyToLogin), for: .editingChanged)
+        passwordTextField.textField.addTarget(self, action: #selector(readyToLogin), for: .editingChanged)
+        loginButton.addTarget(self, action: #selector(loginButtonDidTap), for: .touchUpInside)
+    }
+}
+
+extension LoginViewController {
+    @objc private func readyToLogin() {
+        loginButton.isDisabled = (idTextField.textField.text?.isEmpty ?? true) || (passwordTextField.textField.text?.isEmpty ?? true)
+    }
+    
+    @objc private func loginButtonDidTap() {
+        let welcomeViewController = WelcomeViewController()
+        welcomeViewController.email = idTextField.textField.text
+        self.navigationController?.pushViewController(welcomeViewController, animated: true)
     }
 }
