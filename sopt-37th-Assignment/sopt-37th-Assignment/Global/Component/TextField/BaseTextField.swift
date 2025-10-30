@@ -58,8 +58,9 @@ class BaseTextField: BaseUIView {
         textField.do {
             $0.font = .body_r_14
             $0.textColor = .baeminGray700
-            $0.addRightPadding()
-            $0.setPlaceholder(color: UIColor.baeminMint300)
+            $0.tintColor = .baeminMint300
+            $0.addPadding()
+            $0.setPlaceholder(color: UIColor.baeminGray700)
             $0.layer.cornerRadius = 4
             $0.layer.masksToBounds = true
             $0.layer.borderWidth = 1
@@ -72,7 +73,7 @@ class BaseTextField: BaseUIView {
     // MARK: - SetLayout
     
     override func setLayout() {
-        addSubviews(floatingLabel, textField)
+        addSubviews(textField, floatingLabel)
         
         textField.snp.makeConstraints {
             $0.edges.equalToSuperview()
