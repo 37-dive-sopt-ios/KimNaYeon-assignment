@@ -25,6 +25,7 @@ class BaseUIViewController: UIViewController {
         setDelegate()
         
         hideKeyboardWhenTappedAround()
+        navigationItem.hidesBackButton = true
     }
     
     // MARK: - Custom Method
