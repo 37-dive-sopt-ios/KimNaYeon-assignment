@@ -11,7 +11,6 @@ import Then
 import SnapKit
 
 final class LoginViewController: BaseUIViewController {
-    private var type = "이메일"
     private let navigationBar = BaeminNavigationBar(title: "이메일 또는 아이디로 계속")
     private lazy var idTextField = BaeminIdTextField()
     private lazy var passwordTextField = BaeminPasswordTextField()
@@ -23,7 +22,7 @@ final class LoginViewController: BaseUIViewController {
     
     private let findAccountButton = AccountButton()
     
-    private lazy var toastMesssage = ToastMessage(title: "\(type)의 형식이 다릅니다.").then {
+    private lazy var toastMesssage = ToastMessage(title: "뿡").then {
         $0.isHidden = true
     }
     
@@ -90,12 +89,15 @@ extension LoginViewController {
         guard let email = idTextField.textField.text,
               let password = passwordTextField.textField.text else {return}
         
+        print("[\(email)] count=\(email.count)")
+        
         if !email.isValidEmail {
+            toastMesssage.updateTitle("이메일 형식이 다릅니다.")
             makeToast()
             return
         }
         if !password.isValidPassword {
-            type = "비밀번호"
+            toastMesssage.updateTitle("비밀번호 형식이 다릅니다.")
             makeToast()
             return
         }

@@ -59,4 +59,8 @@ final class ToastMessage: BaseUIView {
             $0.leading.trailing.equalToSuperview().inset(16)
         }
     }
+    
+    func updateTitle(_ newTitle: String) {
+        titleLabel.text = newTitle
+    }
 }
