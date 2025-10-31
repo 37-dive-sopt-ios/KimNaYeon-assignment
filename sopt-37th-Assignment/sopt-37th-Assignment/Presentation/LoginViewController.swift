@@ -11,6 +11,7 @@ import Then
 import SnapKit
 
 final class LoginViewController: BaseUIViewController {
+    private var type = "이메일"
     private let navigationBar = BaeminNavigationBar(title: "이메일 또는 아이디로 계속")
     private lazy var idTextField = BaeminIdTextField()
     private lazy var passwordTextField = BaeminPasswordTextField()
@@ -21,6 +22,10 @@ final class LoginViewController: BaseUIViewController {
     }
     
     private let findAccountButton = AccountButton()
+    
+    private lazy var toastMesssage = ToastMessage(title: "\(type)의 형식이 다릅니다.").then {
+        $0.isHidden = true
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -33,7 +38,7 @@ final class LoginViewController: BaseUIViewController {
     }
     
     override func setUI() {
-        view.addSubviews(navigationBar, idTextField, passwordTextField, loginButton, findAccountButton)
+        view.addSubviews(navigationBar, idTextField, passwordTextField, loginButton, findAccountButton, toastMesssage)
     }
     
     override func setLayout() {
@@ -62,6 +67,11 @@ final class LoginViewController: BaseUIViewController {
             $0.top.equalTo(loginButton.snp.bottom).offset(32)
             $0.centerX.equalToSuperview()
         }
+        
+        toastMesssage.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(116)
+        }
     }
     
     override func addTarget() {
@@ -77,8 +87,35 @@ extension LoginViewController {
     }
     
     @objc private func loginButtonDidTap() {
+        guard let email = idTextField.textField.text,
+              let password = passwordTextField.textField.text else {return}
+        
+        if !email.isValidEmail {
+            makeToast()
+            return
+        }
+        if !password.isValidPassword {
+            type = "비밀번호"
+            makeToast()
+            return
+        }
+        
         let welcomeViewController = WelcomeViewController()
         welcomeViewController.email = idTextField.textField.text
         self.navigationController?.pushViewController(welcomeViewController, animated: true)
+    }
+    
+    public func makeToast(){
+        toastMesssage.alpha = 0
+        toastMesssage.isHidden = false
+        UIView.animate(withDuration: 0.3) {
+            self.toastMesssage.alpha = 1.0
+        } completion: { _ in
+            UIView.animate(withDuration: 0.3, delay: 2){
+                self.toastMesssage.alpha = 0
+            } completion: { _ in
+                self.toastMesssage.isHidden = true
+            }
+        }
     }
 }
