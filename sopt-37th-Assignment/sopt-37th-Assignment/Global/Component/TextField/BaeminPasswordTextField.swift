@@ -59,7 +59,7 @@ final class BaeminPasswordTextField: BaseTextField {
 }
 
 extension BaeminPasswordTextField {
-    @objc private func clearText() {
+    @objc func clearText() {
         textField.text = ""
         clearButton.isHidden = true
         eyeButton.isHidden = true

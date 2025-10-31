@@ -116,4 +116,10 @@ extension BaseTextField {
             self.textField.layer.borderWidth = isActive ? 2 : 1
         }
     }
+    
+    func reset() {
+        textField.text = ""
+        animateFloat(isActive: false)
+        animateFocus(isActive: false)
+    }
 }

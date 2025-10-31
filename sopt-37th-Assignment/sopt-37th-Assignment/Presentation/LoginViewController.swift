@@ -20,6 +20,16 @@ final class LoginViewController: BaseUIViewController {
     }
     private let findAccountButton = AccountButton()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        idTextField.reset()
+        passwordTextField.reset()
+        passwordTextField.clearText()
+        
+        loginButton.isDisabled = true
+    }
+    
     override func setUI() {
         view.addSubviews(navigationBar, idTextField, passwordTextField, loginButton, findAccountButton)
     }

@@ -68,4 +68,18 @@ class WelcomeViewController: BaseUIViewController {
             $0.bottom.equalToSuperview().inset(48)
         }
     }
+    
+    override func addTarget() {
+        backButton.addTarget(self, action: #selector(backButtonDidTap), for: .touchUpInside)
+    }
+}
+
+extension WelcomeViewController {
+    @objc private func backButtonDidTap() {
+        if self.navigationController == nil {
+            self.dismiss(animated: true)
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
 }
