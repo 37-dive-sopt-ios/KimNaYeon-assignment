@@ -22,10 +22,6 @@ final class LoginViewController: BaseUIViewController {
     
     private let findAccountButton = AccountButton()
     
-    private lazy var toastMesssage = ToastMessage(title: "뿡").then {
-        $0.isHidden = true
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -37,7 +33,7 @@ final class LoginViewController: BaseUIViewController {
     }
     
     override func setUI() {
-        view.addSubviews(navigationBar, idTextField, passwordTextField, loginButton, findAccountButton, toastMesssage)
+        view.addSubviews(navigationBar, idTextField, passwordTextField, loginButton, findAccountButton)
     }
     
     override func setLayout() {
@@ -66,11 +62,6 @@ final class LoginViewController: BaseUIViewController {
             $0.top.equalTo(loginButton.snp.bottom).offset(32)
             $0.centerX.equalToSuperview()
         }
-        
-        toastMesssage.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(116)
-        }
     }
     
     override func addTarget() {
@@ -92,32 +83,16 @@ extension LoginViewController {
         print("[\(email)] count=\(email.count)")
         
         if !email.isValidEmail {
-            toastMesssage.updateTitle("이메일 형식이 다릅니다.")
-            makeToast()
+            ToastMessage.makeToast(on: self.view, message: "이메일 형식이 다릅니다.")
             return
         }
         if !password.isValidPassword {
-            toastMesssage.updateTitle("비밀번호 형식이 다릅니다.")
-            makeToast()
+            ToastMessage.makeToast(on: self.view, message: "비밀번호 형식이 다릅니다.")
             return
         }
         
         let welcomeViewController = WelcomeViewController()
         welcomeViewController.email = idTextField.textField.text
         self.navigationController?.pushViewController(welcomeViewController, animated: true)
-    }
-    
-    public func makeToast(){
-        toastMesssage.alpha = 0
-        toastMesssage.isHidden = false
-        UIView.animate(withDuration: 0.3) {
-            self.toastMesssage.alpha = 1.0
-        } completion: { _ in
-            UIView.animate(withDuration: 0.3, delay: 2){
-                self.toastMesssage.alpha = 0
-            } completion: { _ in
-                self.toastMesssage.isHidden = true
-            }
-        }
     }
 }

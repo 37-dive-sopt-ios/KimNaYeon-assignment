@@ -64,3 +64,25 @@ final class ToastMessage: BaseUIView {
         titleLabel.text = newTitle
     }
 }
+extension ToastMessage {
+    static func makeToast(on view: UIView, message: String){
+        let toast = ToastMessage(title: message)
+        view.addSubview(toast)
+        
+        toast.alpha = 0
+        toast.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(116)
+        }
+        
+        UIView.animate(withDuration: 0.3) {
+            toast.alpha = 1.0
+        } completion: { _ in
+            UIView.animate(withDuration: 0.3, delay: 2){
+                toast.alpha = 0
+            } completion: { _ in
+                toast.isHidden = true
+            }
+        }
+    }
+}
