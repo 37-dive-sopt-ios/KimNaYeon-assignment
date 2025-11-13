@@ -70,7 +70,7 @@ class WelcomeViewController: BaseUIViewController {
     }
     
     override func addTarget() {
-//        backButton.addTarget(self, action: #selector(backButtonDidTap), for: .touchUpInside)
+        backButton.addTarget(self, action: #selector(goToMainButtonDidTap), for: .touchUpInside)
     }
     
     override func setDelegate() {
@@ -85,6 +85,10 @@ extension WelcomeViewController {
         } else {
             self.navigationController?.popViewController(animated: true)
         }
+    }
+    
+    @objc func goToMainButtonDidTap() {
+        SceneDelegate.shared?.changeRootViewController(BaeminTabBar())
     }
 }
 
