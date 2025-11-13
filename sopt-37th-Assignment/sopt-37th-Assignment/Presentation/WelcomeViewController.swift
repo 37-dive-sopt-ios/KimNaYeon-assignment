@@ -13,7 +13,7 @@ import SnapKit
 class WelcomeViewController: BaseUIViewController {
     var email: String? = ""
     
-    private let navigationBar = BaeminNavigationBar(title: "대체 뼈찜 누가 시켰어??")
+    private lazy var navigationBar = BaeminNavigationBar(title: "대체 뼈찜 누가 시켰어??")
     
     private let baeminImage = UIImageView().then{
         $0.image = .surprisedCharacter
@@ -33,7 +33,7 @@ class WelcomeViewController: BaseUIViewController {
     }
     
     private lazy var backButton = BaeminButton().then{
-        $0.text = "뒤로가기"
+        $0.text = "메인으로 가기"
     }
     
     override func setUI() {
@@ -70,16 +70,26 @@ class WelcomeViewController: BaseUIViewController {
     }
     
     override func addTarget() {
-        backButton.addTarget(self, action: #selector(backButtonDidTap), for: .touchUpInside)
+//        backButton.addTarget(self, action: #selector(backButtonDidTap), for: .touchUpInside)
+    }
+    
+    override func setDelegate() {
+        navigationBar.delegate = self
     }
 }
 
 extension WelcomeViewController {
-    @objc private func backButtonDidTap() {
+    @objc func backButtonDidTap() {
         if self.navigationController == nil {
             self.dismiss(animated: true)
         } else {
             self.navigationController?.popViewController(animated: true)
         }
+    }
+}
+
+extension WelcomeViewController: BaeminNavigationBarDelegate {
+    func didTapBackButton() {
+        backButtonDidTap()
     }
 }
