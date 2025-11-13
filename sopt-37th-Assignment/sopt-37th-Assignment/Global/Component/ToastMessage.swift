@@ -65,7 +65,7 @@ final class ToastMessage: BaseUIView {
     }
 }
 extension ToastMessage {
-    static func makeToast(on view: UIView, message: String){
+    func makeToast(on view: UIView, message: String){
         let toast = ToastMessage(title: message)
         view.addSubview(toast)
         

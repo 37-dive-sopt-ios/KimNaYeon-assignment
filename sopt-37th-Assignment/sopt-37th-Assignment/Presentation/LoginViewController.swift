@@ -14,6 +14,7 @@ final class LoginViewController: BaseUIViewController {
     private let navigationBar = BaeminNavigationBar(title: "이메일 또는 아이디로 계속")
     private lazy var idTextField = BaeminIdTextField()
     private lazy var passwordTextField = BaeminPasswordTextField()
+    private lazy var toast = ToastMessage(title: "")
     
     private lazy var loginButton = BaeminButton().then {
         $0.text = "로그인"
@@ -79,15 +80,13 @@ extension LoginViewController {
     @objc private func loginButtonDidTap() {
         guard let email = idTextField.textField.text,
               let password = passwordTextField.textField.text else {return}
-        
-        print("[\(email)] count=\(email.count)")
-        
+                
         if !email.isValidEmail {
-            ToastMessage.makeToast(on: self.view, message: "이메일 형식이 다릅니다.")
+            toast.makeToast(on: self.view, message: "이메일 형식이 다릅니다.")
             return
         }
         if !password.isValidPassword {
-            ToastMessage.makeToast(on: self.view, message: "비밀번호 형식이 다릅니다.")
+            toast.makeToast(on: self.view, message: "비밀번호 형식이 다릅니다.")
             return
         }
         
