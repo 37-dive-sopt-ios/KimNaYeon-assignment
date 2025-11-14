@@ -19,7 +19,10 @@ final class BaeminSmallCell: UICollectionViewCell {
         $0.clipsToBounds = true
         $0.layer.cornerRadius = 20
     }
-    private let titleLabel = UILabel()
+    private let titleLabel = UILabel().then {
+        $0.font = .body_r_14
+        $0.textColor = .baeminBlack
+    }
     
     
     // MARK: - Init
@@ -42,12 +45,12 @@ final class BaeminSmallCell: UICollectionViewCell {
         imageView.snp.makeConstraints {
             $0.width.height.equalTo(58)
             $0.centerX.equalToSuperview()
-            $0.top.equalToSuperview().inset(12)
+            $0.top.equalToSuperview()
         }
         
         titleLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(imageView.snp.bottom).offset(12)
+            $0.top.equalTo(imageView.snp.bottom).offset(6)
             $0.bottom.equalToSuperview()
         }
     }

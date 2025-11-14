@@ -28,4 +28,13 @@ public struct DeliveryModel {
         DeliveryModel(image: .oni9, title: "패스트푸드"),
         DeliveryModel(image: .oni3, title: "픽업")
     ]
+    
+    public static let mockData2: [DeliveryModel] = [
+        DeliveryModel(image: .oni1, title: "B마트"),
+        DeliveryModel(image: .oni2, title: "CU"),
+        DeliveryModel(image: .oni3, title: "이마트슈퍼"),
+        DeliveryModel(image: .oni4, title: "홈플러스"),
+        DeliveryModel(image: .oni5, title: "GS25"),
+        DeliveryModel(image: .oni6, title: "이마트"),
+    ]
 }

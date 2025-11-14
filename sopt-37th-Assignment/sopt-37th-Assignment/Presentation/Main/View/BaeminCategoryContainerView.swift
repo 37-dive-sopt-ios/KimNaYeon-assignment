@@ -25,6 +25,7 @@ final class BaeminCategoryContainerView: BaseUIView {
         $0.layer.shadowColor = UIColor.baeminMint300.cgColor
         $0.layer.shadowOpacity = 0.25
         $0.layer.shadowOffset = CGSize(width: 0, height: -4)
+        $0.layer.shadowRadius = 4
     }
     
     private lazy var borderView1 = UIView().then {
@@ -39,15 +40,6 @@ final class BaeminCategoryContainerView: BaseUIView {
     private lazy var secondView = UIView().then {
         $0.backgroundColor = .blue
     }
-    
-    // MARK: - Init
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        switchContent(index: 0)
-    }
-    
-    @available(*, unavailable)
-    required init?(coder: NSCoder) { fatalError() }
     
     
     // MARK: - SetUI
@@ -97,6 +89,7 @@ final class BaeminCategoryContainerView: BaseUIView {
     
     override func setDelegate() {
         categoryTabView.delegate = self
+        switchContent(index: 0)
     }
 }
 

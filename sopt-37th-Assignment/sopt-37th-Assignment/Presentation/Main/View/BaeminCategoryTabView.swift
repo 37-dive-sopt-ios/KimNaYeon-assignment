@@ -49,7 +49,7 @@ final class BaeminCategoryTabView: BaseUIView {
     
     override func setUI() {
         stackView.do {
-            $0.axis = .vertical
+            $0.axis = .horizontal
             $0.alignment = .center
             $0.distribution = .equalSpacing
             $0.spacing = 10
@@ -75,9 +75,7 @@ final class BaeminCategoryTabView: BaseUIView {
             stackView.addArrangedSubview(button)
             buttons.append(button)
         }
-        moveIndicator(to: buttons.first!)
     }
-    
     
     // MARK: - SetLayout
     
@@ -98,6 +96,15 @@ final class BaeminCategoryTabView: BaseUIView {
         indicator.snp.makeConstraints{
             $0.bottom.equalToSuperview().inset(1)
             $0.height.equalTo(3)
+            $0.height.equalTo(1)
+        }
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if buttons.indices.contains(selectedButtonIndex) {
+            let target = buttons[selectedButtonIndex]
+            moveIndicator(to: target)
         }
     }
 }

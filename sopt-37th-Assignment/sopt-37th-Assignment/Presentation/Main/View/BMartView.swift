@@ -42,7 +42,7 @@ final class BMartView: BaseUIView {
             $0.height.equalTo(10)
         }
         collectionView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.leading.trailing.equalToSuperview()
             $0.top.bottom.equalToSuperview().inset(10)
         }
         borderView2.snp.makeConstraints {
@@ -57,7 +57,7 @@ final class BMartView: BaseUIView {
     }
     
     override func loadMockData() {
-        data = DeliveryModel.mockData
+        data = DeliveryModel.mockData2
         collectionView.reloadData()
     }
 }
@@ -89,5 +89,9 @@ extension BMartView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 9
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     }
 }
