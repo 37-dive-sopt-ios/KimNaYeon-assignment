@@ -16,7 +16,7 @@ class BaeminTabBar: UITabBarController {
     }
 
     func setTabBar() {
-        let vc1 = UINavigationController(rootViewController: RedViewController())
+        let vc1 = UINavigationController(rootViewController: MainViewController())
         vc1.tabBarItem = UITabBarItem(title: "홈", image: .home, tag: 1)
         let vc2 = UINavigationController(rootViewController: RedViewController())
         vc2.tabBarItem = UITabBarItem(title: "장보기·쇼핑", image: .shopping, tag: 2)

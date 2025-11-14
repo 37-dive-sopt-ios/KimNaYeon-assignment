@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // 3.
         let vc = UINavigationController(rootViewController: LoginViewController())
         // 4.
-        window.rootViewController = vc
+        window.rootViewController = BaeminTabBar()
         // 5.
         self.window = window
         // 6.
