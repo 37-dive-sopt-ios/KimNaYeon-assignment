@@ -52,3 +52,9 @@ final class BaeminSmallCell: UICollectionViewCell {
         }
     }
 }
+extension BaeminSmallCell {
+    public func configure(data: DeliveryModel) {
+        imageView.image = data.image
+        titleLabel.text = data.title
+    }
+}

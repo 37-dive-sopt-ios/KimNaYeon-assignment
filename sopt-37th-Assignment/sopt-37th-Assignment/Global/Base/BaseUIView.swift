@@ -13,6 +13,8 @@ class BaseUIView: UIView {
         super.init(frame: frame)
         setUI()
         setLayout()
+        setDelegate()
+        loadMockData()
     }
     
     required init?(coder: NSCoder) {
@@ -22,4 +24,8 @@ class BaseUIView: UIView {
     func setUI() {}
     
     func setLayout() {}
+    
+    func setDelegate() {}
+    
+    func loadMockData() {}
 }

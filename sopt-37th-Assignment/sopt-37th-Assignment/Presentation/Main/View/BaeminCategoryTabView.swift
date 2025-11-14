@@ -49,7 +49,7 @@ final class BaeminCategoryTabView: BaseUIView {
     
     override func setUI() {
         stackView.do {
-            $0.axis = .horizontal
+            $0.axis = .vertical
             $0.alignment = .center
             $0.distribution = .equalSpacing
             $0.spacing = 10
