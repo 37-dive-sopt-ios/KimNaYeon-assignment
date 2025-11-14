@@ -28,7 +28,7 @@ final class BaeminSearchTextField: BaseUIView {
             $0.addPadding()
             $0.setPlaceholder(color: UIColor.baeminGray300)
             $0.placeholder = "찾아라! 맛있는 음식과 맛집"
-            $0.layer.cornerRadius = 50
+            $0.layer.cornerRadius = 20
             $0.layer.masksToBounds = true
             $0.layer.borderWidth = 1
             $0.layer.borderColor = UIColor.baeminBlack.cgColor
