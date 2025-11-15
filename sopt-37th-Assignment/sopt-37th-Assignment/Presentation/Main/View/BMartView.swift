@@ -43,7 +43,8 @@ final class BMartView: BaseUIView {
         }
         collectionView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
-            $0.top.bottom.equalToSuperview().inset(10)
+            $0.top.bottom.equalToSuperview().inset(11)
+            $0.height.equalTo(74)
         }
         borderView2.snp.makeConstraints {
             $0.leading.trailing.bottom.equalToSuperview()

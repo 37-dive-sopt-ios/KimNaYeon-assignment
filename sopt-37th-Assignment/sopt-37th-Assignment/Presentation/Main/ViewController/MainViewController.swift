@@ -48,8 +48,7 @@ final class MainViewController: BaseUIViewController {
         $0.alignment = .center
         $0.distribution = .fillEqually
     }
-    
-    
+        
     // MARK: - SetUI
     
     override func setUI() {
@@ -107,7 +106,7 @@ final class MainViewController: BaseUIViewController {
         bMartView.snp.makeConstraints {
             $0.top.equalTo(categoryView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(140)  // 실제 사이즈에 맞춰 조절
+            $0.height.equalTo(116)
             $0.bottom.equalToSuperview().offset(-40)
         }
     }
