@@ -1,8 +1,8 @@
 //
-//  BMartView.swift
+//  BannerView.swift
 //  sopt-37th-Assignment
 //
-//  Created by 김나연 on 11/14/25.
+//  Created by 김나연 on 11/15/25.
 //
 
 import UIKit
@@ -10,43 +10,36 @@ import UIKit
 import Then
 import SnapKit
 
-final class BMartView: BaseUIView {
+final class BannerView: BaseUIView {
     
-    private var data: [DeliveryModel] = []
+    private var data: [BannerModel] = []
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .clear
+        collectionView.isPagingEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.register(BaeminSmallCell.self, forCellWithReuseIdentifier: BaeminSmallCell.identifier)
+        collectionView.backgroundColor = .clear
+        collectionView.register(BannerCell.self, forCellWithReuseIdentifier: BannerCell.identifier)
         return collectionView
     }()
     
-    private let borderView1 = UIView().then {
-        $0.backgroundColor = .baeminbaeminBackgroundWhite
-    }
-    
-    private let borderView2 = UIView().then {
+    private let borderView = UIView().then {
         $0.backgroundColor = .baeminbaeminBackgroundWhite
     }
     
     override func setUI() {
-        addSubviews(borderView1, collectionView, borderView2)
+        addSubviews(collectionView, borderView)
     }
     
     override func setLayout() {
-        borderView1.snp.makeConstraints {
-            $0.leading.trailing.top.equalToSuperview()
-            $0.height.equalTo(10)
-        }
         collectionView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
-            $0.top.bottom.equalToSuperview().inset(11)
-            $0.height.equalTo(74)
+            $0.leading.trailing.top.equalToSuperview()
         }
-        borderView2.snp.makeConstraints {
+        
+        borderView.snp.makeConstraints {
+            $0.top.equalTo(collectionView.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
             $0.height.equalTo(10)
         }
@@ -58,24 +51,24 @@ final class BMartView: BaseUIView {
     }
     
     override func loadMockData() {
-        data = DeliveryModel.mockData2
+        data = BannerModel.bannerMockData
         collectionView.reloadData()
     }
 }
 
-extension BMartView: UICollectionViewDelegate {
+extension BannerView: UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("셀 선택됨: \(indexPath.row)")
     }
 }
 
-extension BMartView: UICollectionViewDataSource {
+extension BannerView: UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return data.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BaeminSmallCell.identifier, for: indexPath) as? BaeminSmallCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BannerCell.identifier, for: indexPath) as? BannerCell else {
             return UICollectionViewCell()
         }
         cell.configure(data: data[indexPath.item])
@@ -83,16 +76,14 @@ extension BMartView: UICollectionViewDataSource {
     }
 }
 
-extension BMartView: UICollectionViewDelegateFlowLayout {
+extension BannerView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 58, height: 74)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 9
+        let width = UIScreen.main.bounds.width
+        let height: CGFloat = 114
+        return CGSize(width: width, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
 }

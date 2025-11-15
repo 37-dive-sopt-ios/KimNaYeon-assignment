@@ -37,6 +37,8 @@ final class MainViewController: BaseUIViewController {
     
     private let bMartView = BMartView()
     
+    private let bannerView = BannerView()
+    
     private let scrollView = UIScrollView().then {
         $0.showsVerticalScrollIndicator = false
     }
@@ -55,7 +57,7 @@ final class MainViewController: BaseUIViewController {
         iconStack.addArrangedSubviews(discountImage, alarmImage, cartImage)
         view.addSubviews(scrollView)
         scrollView.addSubview(contentView)
-        contentView.addSubviews(searchTextField, myHouseButton, iconStack, bMartImage, bMartButton, categoryView, bMartView)
+        contentView.addSubviews(searchTextField, myHouseButton, iconStack, bMartImage, bMartButton, categoryView, bMartView, bannerView)
     }
     
     
@@ -107,6 +109,12 @@ final class MainViewController: BaseUIViewController {
             $0.top.equalTo(categoryView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(116)
+        }
+        
+        bannerView.snp.makeConstraints {
+            $0.top.equalTo(bMartView.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(124)
             $0.bottom.equalToSuperview().offset(-40)
         }
     }
