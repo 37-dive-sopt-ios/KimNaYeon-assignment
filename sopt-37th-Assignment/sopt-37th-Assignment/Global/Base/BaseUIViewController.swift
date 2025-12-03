@@ -23,6 +23,7 @@ class BaseUIViewController: UIViewController {
         setLayout()
         addTarget()
         setDelegate()
+        setBind()
         
         hideKeyboardWhenTappedAround()
         navigationItem.hidesBackButton = true
@@ -42,6 +43,11 @@ class BaseUIViewController: UIViewController {
     // MARK: - delegate Method
     
     func setDelegate() {}
+    
+    
+    // MARK: - bind to ViewModel Method
+    
+    func setBind() {}
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
